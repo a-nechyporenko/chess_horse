@@ -25,11 +25,6 @@ Step::Step(const std::pair<int, int> &coord_, bool isStepFaild_)
 
 }
 
-Step::~Step()
-{
-
-}
-
 const std::pair<int, int>& Step::getCoord() const
 {
     return coord;

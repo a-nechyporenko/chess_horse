@@ -1,24 +1,18 @@
 #include "Board.hpp"
-#include <iostream>
+
 Board::Board()
-    :fields()
 {
     initFields();
 }
 
-Board::~Board()
-{
-
-}
-
 void Board::initFields()
 {
-    for(int i = 0; i < nBoard::BOARD_SIZE; ++i)
+    for( int i = 0; i < Chess::Board::BOARD_SIZE; ++i )
     {
         std::vector<Field> lien;
         fields.push_back(lien);
 
-        for(int j = 0; j < nBoard::BOARD_SIZE; ++j)
+        for(int j = 0; j < Chess::Board::BOARD_SIZE; ++j)
         {
             Field field;
             fields.back().push_back(field);
@@ -30,8 +24,8 @@ bool Board::isCoordValid(const std::pair<int, int> &stepCoordinate)
 {
     bool isValid = true;
 
-    if(stepCoordinate.first >= nBoard::BOARD_SIZE) { isValid = false;}
-    if(stepCoordinate.second >= nBoard::BOARD_SIZE){ isValid = false;}
+    if(stepCoordinate.first >= Chess::Board::BOARD_SIZE) { isValid = false;}
+    if(stepCoordinate.second >= Chess::Board::BOARD_SIZE){ isValid = false;}
     if(stepCoordinate.first <  0) { isValid = false;}
     if(stepCoordinate.second < 0) { isValid = false;}
 
@@ -63,9 +57,9 @@ bool Board::isAllFieldsIsVisited()
 {
     bool isAllFieldsIsVisited = true;
 
-    for(int x = 0; x < nBoard::BOARD_SIZE; ++x)
+    for(int x = 0; x < Chess::Board::BOARD_SIZE; ++x)
     {
-        for(int y = 0; y < nBoard::BOARD_SIZE; ++y)
+        for(int y = 0; y < Chess::Board::BOARD_SIZE; ++y)
         {
             if( false == fields.at(x).at(y).getIsVisited())
             {
@@ -96,7 +90,7 @@ void Board::drawBoardWithoutFaildStep(const std::pair<int, int>& faildStepCoordi
 
 void Board::drawBoard()
 {
-    system("cls");
+    system("clear");
 
     for( auto verticalLien = fields.begin(); verticalLien != fields.end(); ++verticalLien)
     {

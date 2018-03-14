@@ -8,11 +8,6 @@ Field::Field()
 
 }
 
-Field::~Field()
-{
-
-}
-
 void Field::draw()
 {
     if (true == isVisited)

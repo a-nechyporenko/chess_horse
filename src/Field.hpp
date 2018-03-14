@@ -6,7 +6,7 @@ class Field
 {
 public:
     Field();
-    ~Field();
+    ~Field() = default;
 
     void draw();
     bool getIsVisited() const;

@@ -6,10 +6,14 @@
 
 enum class VariantsOfSteps
 {
-    BotomLeft, BotomRight,
-    LeftBotom, LeftTop,
-    TopLeft, TopRight,
-    RightTop, RightBotom,
+    BotomLeft = 0,
+    BotomRight,
+    LeftBotom,
+    LeftTop,
+    TopLeft,
+    TopRight,
+    RightTop,
+    RightBotom,
     StepIsFaild
 };
 

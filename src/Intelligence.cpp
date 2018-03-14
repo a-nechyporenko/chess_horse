@@ -10,19 +10,14 @@ Intelligence::Intelligence()
 
 }
 
-Intelligence::~Intelligence()
-{
-
-}
-
 bool Intelligence::setStartPosition(int x, int y)
 {
     bool isSuccessStartPosition = false;
 
     if(
-            nBoard::BOARD_SIZE >= x
+            Chess::Board::BOARD_SIZE >= x
             &&
-            nBoard::BOARD_SIZE >= y
+            Chess::Board::BOARD_SIZE >= y
             )
     {
         startPosition.first = x;
@@ -80,7 +75,7 @@ const Intelligence::VetorStepsCoordinates &Intelligence::findResultSteps()
     }
 
     std::cout<< " I found right way! Could I show you? \n";
-    system("pause");
+    std::cin.ignore().get();
 
     return member.getSuccessfulSteps();
 }

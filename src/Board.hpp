@@ -1,22 +1,19 @@
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
+#include "NChessDefinitions.hpp"
 #include "Field.hpp"
 #include <vector>
 #include <utility>
+#include <iostream>
 
-namespace nBoard
-{
-    const int BOARD_SIZE = 5;
-    const int MAX_STEPS = 8;
-}
 class Board
 {
 public:
     Board();
-    ~Board();
+    ~Board() = default;
 
-    const Field &getField( const int x, const int y) const;
+    const Field& getField( const int x, const int y ) const;
 
     bool isFildAlreadyVisited(const std::pair<int, int> &stepCoordinate);
     bool isAllFieldsIsVisited();

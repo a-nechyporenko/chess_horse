@@ -23,6 +23,6 @@ int main()
     }while ( false == intel.setStartPosition(2,2) );
 
     intel.showSteps();
-    system("pause");
+    cin.ignore().get(); //Pause Command for Linux Terminal
     return 0;
 }

@@ -113,7 +113,15 @@ Step Horse::doNextStep(const std::pair<int, int>& nextStep_)
 
         if( false == isAllStepsArroundFaild)
         {
-            checkCurrent(std::move(nextStep), step, isFindNextStep);
+            if( false == isFildAlreadyVisited(nextStep))
+            {
+                isFindNextStep = true;
+                step.setCoord(nextStep);
+            }
+            else
+            {
+                addCoordinateToFaildStep(nextStep);
+            }
         }
         else
         {

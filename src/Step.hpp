@@ -11,7 +11,7 @@ public:
     Step(int x, int y);
     Step(const std::pair<int, int>& coord_, bool isStepFaild_);
 
-    ~Step();
+    ~Step() = default;
 
     const std::pair<int, int> &getCoord() const;
     void setCoord(const std::pair<int, int> &value);
