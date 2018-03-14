@@ -20,10 +20,10 @@ bool Intelligence::setStartPosition(int x, int y)
     bool isSuccessStartPosition = false;
 
     if(
-            nBoard::BOARD_SIZE >= x
-            &&
-            nBoard::BOARD_SIZE >= y
-            )
+       nBoard::BOARD_SIZE >= x
+       &&
+       nBoard::BOARD_SIZE >= y
+       )
     {
         startPosition.first = x;
         startPosition.second = y;
