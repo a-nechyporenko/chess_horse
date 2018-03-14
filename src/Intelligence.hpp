@@ -11,24 +11,25 @@
 
 class Intelligence
 {
-    typedef std::vector<std::pair<int, int>> VetorStepsCoordinates;
+        typedef std::vector<std::pair<int, int>> VetorStepsCoordinates;
 
-public:
-    Intelligence();
-    ~Intelligence();
+    public:
+        Intelligence();
+        ~Intelligence();
 
-    bool setStartPosition(int x, int y);
-    void showSteps();
-    void drawBoard();
-private:
-    void drawResultSteps( const VetorStepsCoordinates& resultSteps);
-    const VetorStepsCoordinates& findResultSteps();
+        bool setStartPosition(int x, int y);
+        void showSteps();
+        void drawBoard();
 
-private:
-    Board board;
-    Member member;
-    Horse horse;
-    std::pair<int, int> startPosition;
+    private:
+        void drawResultSteps( const VetorStepsCoordinates& resultSteps);
+        const VetorStepsCoordinates& findResultSteps();
+
+    private:
+        Board board;
+        Member member;
+        Horse horse;
+        std::pair<int, int> startPosition;
 
 };
 

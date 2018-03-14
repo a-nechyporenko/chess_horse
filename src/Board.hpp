@@ -12,25 +12,25 @@ namespace nBoard
 }
 class Board
 {
-public:
-    Board();
-    ~Board();
+    public:
+        Board();
+        ~Board();
 
-    const Field &getField( const int x, const int y) const;
+        const Field &getField( const int x, const int y) const;
 
-    bool isFildAlreadyVisited(const std::pair<int, int> &stepCoordinate);
-    bool isAllFieldsIsVisited();
+        bool isFildAlreadyVisited(const std::pair<int, int>& stepCoordinate);
+        bool isAllFieldsIsVisited();
 
-    void drawBoard();
-    void drawBoardWithStep (const std::pair<int, int> &stepCoordinate);
-    void drawBoardWithoutFaildStep( const std::pair<int, int>& faildStepCoordinate );
+        void drawBoard();
+        void drawBoardWithStep (const std::pair<int, int>& stepCoordinate);
+        void drawBoardWithoutFaildStep( const std::pair<int, int>& faildStepCoordinate );
 
-private:
-    void initFields();
-    bool isCoordValid(const std::pair<int, int> &stepCoordinate);
-private:
-    typedef std::vector<std::vector<Field>> Fields;
-    Fields fields;
+    private:
+        void initFields();
+        bool isCoordValid(const std::pair<int, int> &stepCoordinate);
+    private:
+        typedef std::vector<std::vector<Field>> Fields;
+        Fields fields;
 
 };
 
