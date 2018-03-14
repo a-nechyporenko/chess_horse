@@ -37,7 +37,7 @@ const Field& Board::getField( const int x, const int y) const
     return fields.at(x).at(y);
 }
 
-bool Board::isFildAlreadyVisited(const std::pair<int, int> &stepCoordinate)
+bool Board::isFieldAlreadyVisited(const std::pair<int, int> &stepCoordinate)
 {
     bool isAlreadyVisited = false;
 
@@ -81,9 +81,9 @@ void Board::drawBoardWithStep(const std::pair<int, int>& stepCoordinate)
     drawBoard();
 }
 
-void Board::drawBoardWithoutFaildStep(const std::pair<int, int>& faildStepCoordinate)
+void Board::drawBoardWithoutFailedStep(const std::pair<int, int>& FailedStepCoordinate)
 {
-    fields.at(faildStepCoordinate.first).at(faildStepCoordinate.second).setIsVisited(false);
+    fields.at(FailedStepCoordinate.first).at(FailedStepCoordinate.second).setIsVisited(false);
 
     drawBoard();
 }

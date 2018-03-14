@@ -15,12 +15,12 @@ public:
 
     const Field& getField( const int x, const int y ) const;
 
-    bool isFildAlreadyVisited(const std::pair<int, int> &stepCoordinate);
+    bool isFieldAlreadyVisited(const std::pair<int, int> &stepCoordinate);
     bool isAllFieldsIsVisited();
 
     void drawBoard();
     void drawBoardWithStep (const std::pair<int, int> &stepCoordinate);
-    void drawBoardWithoutFaildStep( const std::pair<int, int>& faildStepCoordinate );
+    void drawBoardWithoutFailedStep( const std::pair<int, int>& FailedStepCoordinate );
 
 private:
     void initFields();

@@ -6,15 +6,15 @@
 
 enum class VariantsOfSteps
 {
-    BotomLeft = 0,
-    BotomRight,
-    LeftBotom,
+    BottomLeft = 0,
+    BottomRight,
+    LeftBottom,
     LeftTop,
     TopLeft,
     TopRight,
     RightTop,
-    RightBotom,
-    StepIsFaild
+    RightBottom,
+    StepIsFailed
 };
 
 class Horse
@@ -28,9 +28,9 @@ private:
     Step doNextStep(const std::pair<int, int>& nextStep_);
 
     void switchCurentStepVariant();
-    void addCoordinateToFaildStep(const std::pair<int, int> &nextStep);
-    bool isFildAlreadyVisited(const std::pair<int, int>& nextStep );
-    void checkCurrent(std::pair<int, int> &&nextStep, Step &step, bool isFindNextStep);
+    void addCoordinateToFailedStep(const std::pair<int, int> &nextStep);
+    bool isFieldAlreadyVisited(const std::pair<int, int>& nextStep );
+    void checkCurrent(const std::pair<int, int>& nextStep, Step &step, bool& isFindNextStep);
 
 private:
     Member& member;

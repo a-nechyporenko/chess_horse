@@ -3,24 +3,24 @@
 
 Step::Step()
     : coord(-1,-1)
-    , faildNextSteps()
-    , isStepFaild(false)
+    , FailedNextSteps()
+    , isStepFailed(false)
 {
 
 }
 
 Step::Step(int x, int y)
     : coord(x,y)
-    , faildNextSteps()
-    , isStepFaild(false)
+    , FailedNextSteps()
+    , isStepFailed(false)
 {
 
 }
 
-Step::Step(const std::pair<int, int> &coord_, bool isStepFaild_)
+Step::Step(const std::pair<int, int> &coord_, bool isStepFailed_)
     : coord(coord_)
-    , faildNextSteps()
-    , isStepFaild(isStepFaild_)
+    , FailedNextSteps()
+    , isStepFailed(isStepFailed_)
 {
 
 }
@@ -35,37 +35,37 @@ void Step::setCoord(const std::pair<int, int> &value)
     coord = value;
 }
 
-bool Step::getIsStepFaild() const
+bool Step::getIsStepFailed() const
 {
-    return isStepFaild;
+    return isStepFailed;
 }
 
-void Step::setIsStepFaild(bool value)
+void Step::setIsStepFailed(bool value)
 {
-    isStepFaild = value;
+    isStepFailed = value;
 
-    if( false == isStepFaild)
+    if( false == isStepFailed)
     {
-        faildNextSteps.clear();
+        FailedNextSteps.clear();
     }
 }
 
-void Step::addNewFaildNextStep(const Step& step)
+void Step::addNewFailedNextStep(const Step& step)
 {
-    faildNextSteps.push_back(step);
+    FailedNextSteps.push_back(step);
 
-    if( 8 < faildNextSteps.size())
+    if( 8 < FailedNextSteps.size())
     {
         std::cout << "It`s imposble that node have more than 8 next node";
     }
 }
 
-bool Step::isNextStepAlreadyInFaild(const std::pair<int, int> &nextStepCoord)
+bool Step::isNextStepAlreadyInFailed(const std::pair<int, int> &nextStepCoord)
 {
     //TODO use findif!!!
-    for(auto faildStep : faildNextSteps)
+    for(auto FailedStep : FailedNextSteps)
     {
-        if( nextStepCoord == faildStep.getCoord() )
+        if( nextStepCoord == FailedStep.getCoord() )
         {
             return true;
         }
@@ -74,7 +74,7 @@ bool Step::isNextStepAlreadyInFaild(const std::pair<int, int> &nextStepCoord)
     return false;
 }
 
-std::vector<Step> Step::getFaildNextSteps() const
+std::vector<Step> Step::getFailedNextSteps() const
 {
-    return faildNextSteps;
+    return FailedNextSteps;
 }

@@ -30,7 +30,7 @@ std::vector<std::pair<int, int>>&& Member::getSuccessfulSteps()
 
     if( NEED_COUNT_OF_STEPS != RESULT_COUNT_OF_STEPS )
     {
-        std::cout << "getSuccessfulSteps return faild count of steps : " << RESULT_COUNT_OF_STEPS<<"\n";
+        std::cout << "getSuccessfulSteps return Failed count of steps : " << RESULT_COUNT_OF_STEPS<<"\n";
     }
 
     return std::move(successfulSteps);
@@ -47,15 +47,15 @@ Step &Member::getLastStep()
     return steps.back();
 }
 
-void Member::lastStepIsFaild()
+void Member::lastStepIsFailed()
 {
-    Step faildStep = steps.back();
-    faildStep.setIsStepFaild(true);
+    Step FailedStep = steps.back();
+    FailedStep.setIsStepFailed(true);
 
-    board.drawBoardWithoutFaildStep(faildStep.getCoord());
+    board.drawBoardWithoutFailedStep(FailedStep.getCoord());
 
     steps.pop_back();
-    steps.back().addNewFaildNextStep(faildStep);
+    steps.back().addNewFailedNextStep(FailedStep);
 }
 
 int Member::countOfSteps()
