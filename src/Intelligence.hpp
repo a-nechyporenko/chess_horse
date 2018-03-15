@@ -9,13 +9,14 @@
 #include "Horse.hpp"
 
 
+
 class Intelligence
 {
     typedef std::vector<std::pair<int, int>> VetorStepsCoordinates;
 
 public:
     Intelligence();
-    ~Intelligence();
+    ~Intelligence() = default;
 
     bool setStartPosition(int x, int y);
     void showSteps();

@@ -19,7 +19,7 @@ bool Horse::moveHorse()
 
     Step newStep = doNextStep(curentStep);
 
-    if( false == newStep.getIsStepFaild() )
+    if( false == newStep.getIsStepFailed() )
     {
         member.setNewStep(newStep);
     }
@@ -32,12 +32,25 @@ bool Horse::moveHorse()
     return isHorseHaveSteps;
 }
 
-void Horse::addCoordinateToFaildStep(const std::pair<int, int>& nextStep)
+void Horse::addCoordinateToFailedStep(const std::pair<int, int>& nextStep)
 {
-    if( false == member.getLastStep().isNextStepAlreadyInFaild(nextStep) )
+    if( false == member.getLastStep().isNextStepAlreadyInFailed(nextStep) )
     {
-        Step faildStep(nextStep, true);
-        member.getLastStep().addNewFaildNextStep(faildStep);
+        Step FailedStep(nextStep, true);
+        member.getLastStep().addNewFailedNextStep(FailedStep);
+    }
+}
+
+void Horse::checkCurrent(const std::pair<int, int>& nextStep, Step& step, bool& isFindNextStep)
+{
+    if( false == isFieldAlreadyVisited(nextStep))
+    {
+        isFindNextStep = true;
+        step.setCoord(nextStep);
+    }
+    else
+    {
+        addCoordinateToFailedStep(nextStep);
     }
 }
 
@@ -46,10 +59,10 @@ Step Horse::doNextStep(const std::pair<int, int>& nextStep_)
     //TODO make it easier
     Step step(nextStep_.first, nextStep_.second);
 
-    bool isAllStepsArroundFaild = false;
+    bool isAllStepsArroundFailed = false;
     bool isFindNextStep = false;
 
-    for(; false == isAllStepsArroundFaild && false == isFindNextStep ; switchCurentStepVariant())
+    for(; false == isAllStepsArroundFailed && false == isFindNextStep ; switchCurentStepVariant())
     {
         std::pair<int, int> nextStep( step.getCoord() );
 
@@ -67,25 +80,25 @@ Step Horse::doNextStep(const std::pair<int, int>& nextStep_)
 
             break;
 
-        case VariantsOfSteps::RightBotom:
+        case VariantsOfSteps::RightBottom:
             nextStep.first = curentStep.first +2;
             nextStep.second = curentStep.second - 1;
 
             break;
 
-        case VariantsOfSteps::BotomRight:
+        case VariantsOfSteps::BottomRight:
             nextStep.first = curentStep.first + 1;
             nextStep.second = curentStep.second - 2;
 
             break;
 
-        case VariantsOfSteps::BotomLeft:
+        case VariantsOfSteps::BottomLeft:
             nextStep.first = curentStep.first - 1;
             nextStep.second = curentStep.second - 2;
 
             break;
 
-        case VariantsOfSteps::LeftBotom:
+        case VariantsOfSteps::LeftBottom:
             nextStep.first = curentStep.first - 2;
             nextStep.second = curentStep.second - 1;
 
@@ -103,45 +116,32 @@ Step Horse::doNextStep(const std::pair<int, int>& nextStep_)
 
             break;
 
-        case VariantsOfSteps::StepIsFaild:
-            isAllStepsArroundFaild =  true;
+        case VariantsOfSteps::StepIsFailed:
+            isAllStepsArroundFailed =  true;
             break;
 
         default:
             break;
         }
 
-        if( false == isAllStepsArroundFaild)
+        if( false == isAllStepsArroundFailed)
         {
-            checkCurrent(std::move(nextStep), step, isFindNextStep);
+            checkCurrent(nextStep, step, isFindNextStep);
         }
         else
         {
-            member.lastStepIsFaild();
-            step.setIsStepFaild(true);
+            member.lastStepIsFailed();
+            step.setIsStepFailed(true);
         }
     }
 
     return step;
 }
 
-void Horse::checkCurrent(std::pair<int, int>&& nextStep, Step& step, bool isFindNextStep)
+bool Horse::isFieldAlreadyVisited(const std::pair<int, int>& nextStep )
 {
-    if( false == isFildAlreadyVisited(nextStep))
-    {
-        isFindNextStep = true;
-        step.setCoord(nextStep);
-    }
-    else
-    {
-        addCoordinateToFaildStep(nextStep);
-    }
-}
-
-bool Horse::isFildAlreadyVisited(const std::pair<int, int>& nextStep )
-{
-    if( true == board.isFildAlreadyVisited(nextStep) ) return true;
-    if( true == member.getLastStep().isNextStepAlreadyInFaild(nextStep)) return true;
+    if( true == board.isFieldAlreadyVisited(nextStep) ) return true;
+    if( true == member.getLastStep().isNextStepAlreadyInFailed(nextStep)) return true;
 
     return false;
 }
@@ -156,26 +156,26 @@ void Horse::switchCurentStepVariant()
         break;
 
     case VariantsOfSteps::RightTop:
-        curentVariant = VariantsOfSteps::RightBotom;
+        curentVariant = VariantsOfSteps::RightBottom;
 
         break;
 
-    case VariantsOfSteps::RightBotom:
-        curentVariant = VariantsOfSteps::BotomRight;
+    case VariantsOfSteps::RightBottom:
+        curentVariant = VariantsOfSteps::BottomRight;
 
         break;
 
-    case VariantsOfSteps::BotomRight:
-        curentVariant = VariantsOfSteps::BotomLeft;
+    case VariantsOfSteps::BottomRight:
+        curentVariant = VariantsOfSteps::BottomLeft;
 
         break;
 
-    case VariantsOfSteps::BotomLeft:
-        curentVariant = VariantsOfSteps::LeftBotom;
+    case VariantsOfSteps::BottomLeft:
+        curentVariant = VariantsOfSteps::LeftBottom;
 
         break;
 
-    case VariantsOfSteps::LeftBotom:
+    case VariantsOfSteps::LeftBottom:
         curentVariant = VariantsOfSteps::LeftTop;
 
         break;
@@ -186,7 +186,7 @@ void Horse::switchCurentStepVariant()
         break;
 
     case VariantsOfSteps::TopLeft:
-        curentVariant = VariantsOfSteps::StepIsFaild;
+        curentVariant = VariantsOfSteps::StepIsFailed;
 
         break;
 

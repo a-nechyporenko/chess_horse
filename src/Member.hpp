@@ -17,7 +17,7 @@ public:
 
     void setNewStep (const Step step);
     Step &getLastStep();
-    void lastStepIsFaild();
+    void lastStepIsFailed();
 
     int countOfSteps();
 

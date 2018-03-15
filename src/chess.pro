@@ -1,5 +1,5 @@
 TEMPLATE = app
-CONFIG += console c++11
+CONFIG += console c++14
 CONFIG -= app_bundle
 CONFIG -= qt
 
@@ -9,7 +9,8 @@ SOURCES += main.cpp \
     Member.cpp \
     Intelligence.cpp \
     Horse.cpp \
-    Step.cpp
+    Step.cpp \
+    NChessDefinitions.cpp
 
 HEADERS += \
     Field.hpp \
@@ -17,4 +18,5 @@ HEADERS += \
     Member.hpp \
     Intelligence.hpp \
     Horse.hpp \
-    Step.hpp
+    Step.hpp \
+    NChessDefinitions.hpp
